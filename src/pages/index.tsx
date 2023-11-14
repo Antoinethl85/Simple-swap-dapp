@@ -7,8 +7,8 @@ export default function Home() {
     <div>
       <Header />
       <div id="logo">
-        <Image src="/logo.png" alt="Logo" width={150} height={150} />
-        <h1>MetaSwap</h1>
+        <Image src="/echange.png" alt="Logo" width={150} height={150} />
+        <h1>Swap</h1>
       </div>
       <div id="swapcom">
       <Swap />

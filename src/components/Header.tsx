@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 export const Header: React.FC = () => {
     const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
     const [account, setAccount] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
 // Initialize provider when component mounts
 useEffect(() => {
@@ -37,19 +38,33 @@ useEffect(() => {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       setAccount(accounts[0]);
     } catch (error) {
+      window.alert("Test");
       console.error('Failed to connect:', error);
     }
   };
   
   return (
     <header>
-      {!account ? (
-        <button onClick={handleConnectWallet} className="connectWallet">Connect Wallet</button>
-      ) : (
+      <div className="banner">
+        <div className="left-links">
+          <a href="/">Home</a>
+          <a href="/">Swap</a>
+          <span>Pools</span>
+          <span>Vault</span>
+        </div>
+
+        {!account && (
+          <button onClick={handleConnectWallet} className="connectWallet">
+            Connect Wallet
+          </button>
+        )}
+      </div>
+
+      {account ? (
         <>
           <span id="acc_name">{account.slice(0, 6)}...{account.slice(-4)}</span>
         </>
-      )}
+      ) : null}
     </header>
   );
 
